@@ -8,7 +8,7 @@ validate_file() {
     fi
 }
 
-check_parameters() {
+check_default() {
     if ! [[ $column1_background =~ ^[1-6]$ ]]
     then
         column1_background=6

@@ -44,6 +44,17 @@ column1_font_color=$column1_font_color
 column2_background=$column2_background
 column2_font_color=$column2_font_color
 
+if [[ "$column1_background" ==  "$column1_font_color" ]]
+then
+    column1_background="a"
+    column1_font_color="a"
+fi
+if [[ "$column2_background" ==  "$column2_font_color" ]]
+then
+    column2_background="a"
+    column2_font_color="a"
+fi
+
 parameter_1="${bg_colors[$column1_background]}"
 parameter_2="${font_colors[$column1_font_color]}"
 parameter_3="${bg_colors[$column2_background]}"
@@ -54,7 +65,7 @@ column1_font_color_name=$(get_color_name ${column1_font_color})
 column2_background_name=$(get_color_name ${column2_background})
 column2_font_color_name=$(get_color_name ${column2_font_color})
 
-check_parameters
+check_default
 
 get_system_data() {
     HOSTNAME_var=$(get_hostname)
