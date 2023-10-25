@@ -56,7 +56,7 @@ get_top_ten_exe_files() {
     IFS=$'\n'
     without_hash=($(find $1 -type f -executable -exec du -h {} \; | sort -h -r | head -n 10 | awk '{print $2", "$1}'))
 
-    for (( i=0; i<10; i++ ))
+    for (( i=0; i<${#without_hash[@]}; i++ ))
     do
         file_name=$(echo "${without_hash[$i]}" | cut -f1 -d ",")
         hash_val=$(md5sum "$file_name" | cut -f1 -d " ")
