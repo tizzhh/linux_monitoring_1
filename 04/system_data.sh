@@ -18,7 +18,7 @@ get_user() {
 }
 
 get_os_version() {
-    local os_version=$(cat /etc/os-release | head -1 | sed 's/PRETTY_NAME="//;s/"//')
+    local os_version=$(cat /etc/os-release | grep PRETTY_NAME | sed 's/PRETTY_NAME="//;s/"//')
     echo "$os_version"
 }
 
