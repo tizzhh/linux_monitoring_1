@@ -43,10 +43,8 @@ get_ip() {
 }
 
 get_subnet_mask() {
-    local subnet=$(ip -o -f inet addr show | awk '/scope global/ {print $4}' | head -1 | sed 's/.*\///')
-    local subnet_mask=$((0xFFFFFFFF << (32 - $subnet)))
-    local subnet_mask_dotted_decimal=$(printf "%d.%d.%d.%d\n" $((subnet_mask >> 24 & 255)) $((subnet_mask >> 16 & 255)) $((subnet_mask >> 8 & 255)) $((subnet_mask & 255)))
-    echo "$subnet_mask_dotted_decimal"
+    local subnet=$(ifconfig | grep "$IP_var" | awk '{print $4}')
+    echo "$subnet"
 }
 
 get_gateway() {
